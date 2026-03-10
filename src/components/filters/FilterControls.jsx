@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const DECADES = ["All", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s"];

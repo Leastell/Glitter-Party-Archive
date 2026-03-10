@@ -1,17 +1,8 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { useAuth } from "@/context/AuthProvider";
-import {
-    Music,
-    Camera,
-    MessageSquare,
-    User as UserIcon,
-    Settings,
-    LogOut,
-    ChevronDown,
-    Sparkles,
-} from "lucide-react";
+import { getStorageUrl, ASSET_PATHS, getCustomFontUrl } from "@/config/assets";
+import { Settings, LogOut, ChevronDown, Sparkles } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -41,15 +32,10 @@ export default function Layout({ children, currentPageName }) {
         return "unauthenticated";
     };
 
-    // Generate dynamic font CSS using hardcoded global settings
+    // Generate dynamic font CSS from env (VITE_CUSTOM_FONT_URL)
     const generateFontCSS = () => {
-        // Hardcoded global font settings to ensure they apply to all users
-        const globalFontSettings = {
-            custom_font_url:
-                "https://base44.app/api/apps/68d594da8620fa76c929e50b/files/public/68d594da8620fa76c929e50b/bc974a0af_Akzidenz-grotesk-black.ttf",
-            custom_font_name: "Akzidenz grotesk black",
-            font_family: "custom",
-        };
+        const fontUrl = getCustomFontUrl();
+        const customFontName = "Akzidenz grotesk black";
 
         let fontCSS = `
       @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap');
@@ -60,23 +46,22 @@ export default function Layout({ children, currentPageName }) {
       }
     `;
 
-        // Define the custom font face
-        const fontName = globalFontSettings.custom_font_name;
-        const fontUrl = globalFontSettings.custom_font_url;
-        let fontFormat = "truetype"; // Default to truetype for the .ttf file
-
-        fontCSS += `
+        // Define the custom font face (only if URL is set)
+        const fontFormat = "truetype";
+        if (fontUrl) {
+            fontCSS += `
       @font-face {
-        font-family: '${fontName}';
+        font-family: '${customFontName}';
         src: url('${fontUrl}') format('${fontFormat}');
         font-weight: normal;
         font-style: normal;
         font-display: swap;
       }
     `;
-
-        // Apply the custom font as the active font for everyone
-        const activeFontFamily = `'${fontName}', 'Helvetica Neue', 'Arial', sans-serif`;
+        }
+        const activeFontFamily = fontUrl
+            ? `'${customFontName}', 'Helvetica Neue', 'Arial', sans-serif`
+            : "'Work Sans', 'Helvetica Neue', Arial, sans-serif";
 
         fontCSS += `
       * {
@@ -139,7 +124,9 @@ export default function Layout({ children, currentPageName }) {
                                     className="group px-3 md:px-7 h-full flex items-center opacity-100"
                                 >
                                     <img
-                                        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d594da8620fa76c929e50b/f7d5bc5c4_NewProject27.png"
+                                        src={getStorageUrl(
+                                            ASSET_PATHS.navMusicIcon
+                                        )}
                                         alt="Music"
                                         className="h-12 md:h-full w-auto object-contain py-1 md:py-2 group-hover:[animation:wiggle_0.2s_ease-in-out]"
                                         style={{ filter: "saturate(1.4)" }}
@@ -151,7 +138,9 @@ export default function Layout({ children, currentPageName }) {
                                     className="group px-3 md:px-7 h-full flex items-center opacity-100"
                                 >
                                     <img
-                                        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d594da8620fa76c929e50b/816dcc1b3_NewProject12.png"
+                                        src={getStorageUrl(
+                                            ASSET_PATHS.navCommunityIcon
+                                        )}
                                         alt="Community"
                                         className="h-12 md:h-full w-auto object-contain py-1 md:py-2 group-hover:[animation:wiggle_0.2s_ease-in-out]"
                                         style={{ filter: "saturate(1.4)" }}
@@ -181,7 +170,9 @@ export default function Layout({ children, currentPageName }) {
                                     <DropdownMenu>
                                         <DropdownMenuTrigger className="flex items-center gap-2 hover:opacity-70 transition-opacity">
                                             <img
-                                                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d594da8620fa76c929e50b/55f80c254_NewProject30.png"
+                                                src={getStorageUrl(
+                                                    ASSET_PATHS.avatarPlaceholder
+                                                )}
                                                 alt="User"
                                                 className="w-8 h-8 md:w-10 md:h-10 object-contain"
                                             />

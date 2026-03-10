@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/context/AuthProvider";
 import { uploadImage, getImagePublicUrl } from "@/api/storage";
 import { updateProfile } from "@/api/auth";
@@ -12,7 +12,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Upload, Check, Settings, RefreshCw } from "lucide-react";
+import { Upload, Settings, RefreshCw } from "lucide-react";
 
 export default function ThemeSettings() {
     const { user, loading: authLoading } = useAuth();
@@ -27,13 +27,8 @@ export default function ThemeSettings() {
         custom_font_name: null,
     });
 
-    useEffect(() => {
-        if (!authLoading && user) {
-            loadUserData();
-        }
-    }, [authLoading, user]);
-
-    const loadUserData = async () => {
+    const loadUserData = useCallback(async () => {
+        if (!user) return;
         try {
             if (user.theme_settings?.custom_font_name) {
                 setFontName(user.theme_settings.custom_font_name);
@@ -50,7 +45,13 @@ export default function ThemeSettings() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [user]);
+
+    useEffect(() => {
+        if (!authLoading && user) {
+            loadUserData();
+        }
+    }, [authLoading, user, loadUserData]);
 
     const handleFileSelect = (e) => {
         const file = e.target.files[0];

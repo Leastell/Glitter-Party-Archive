@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "@/context/AuthProvider";
 import { createVideo } from "@/api/videos";
 import { createPost } from "@/api/posts";

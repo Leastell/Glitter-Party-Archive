@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthProvider";
 import { listVideos } from "@/api/videos";
 import { listPosts, listComments, listPolls } from "@/api/posts";

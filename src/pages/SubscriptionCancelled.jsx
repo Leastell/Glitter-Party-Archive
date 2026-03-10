@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -18,7 +17,7 @@ export default function SubscriptionCancelledPage() {
 
         <p className="font-mono text-sm text-gray-600 mb-8 max-w-md mx-auto">
           you cancelled the checkout process. no charges were made to your account.
-          you can try again whenever you're ready.
+          you can try again whenever you&apos;re ready.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

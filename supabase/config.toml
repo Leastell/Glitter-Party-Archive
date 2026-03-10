@@ -1,0 +1,10 @@
+# Supabase project config (optional). Used by `supabase` CLI when linked.
+# See: https://supabase.com/docs/guides/cli/config
+
+[api]
+enabled = true
+
+[functions]
+# Stripe webhook is called by Stripe, not by the app — no JWT.
+# Deploy with: supabase functions deploy stripe-webhook --no-verify-jwt
+stripe-webhook.verify_jwt = false

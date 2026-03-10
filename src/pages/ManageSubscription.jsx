@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthProvider";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
-import {
-    CreditCard,
-    Calendar,
-    AlertTriangle,
-    CheckCircle2,
-} from "lucide-react";
+import { CreditCard, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { cancelSubscription } from "@/api/subscriptions";
 import { updateProfile } from "@/api/auth";
 
@@ -31,7 +26,7 @@ export default function ManageSubscriptionPage() {
     const handleCancelSubscription = async () => {
         setCancelling(true);
         try {
-            const { error: cancelError } = await cancelSubscription();
+            const { error: cancelError } = await cancelSubscription(user.id);
 
             if (cancelError) {
                 throw cancelError;
@@ -132,7 +127,7 @@ export default function ManageSubscriptionPage() {
                                         cancel subscription
                                     </h3>
                                     <p className="font-mono text-xs text-gray-700 mb-4">
-                                        if you cancel, you'll retain access
+                                        if you cancel, you&apos;ll retain access
                                         until the end of your current billing
                                         period. after that, your account will be
                                         downgraded to the free tier.

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { listSuggestions, updateSuggestionStatus } from "@/api/suggestions";
-import { Button } from "@/components/ui/button";
 import {
     Select,
     SelectContent,

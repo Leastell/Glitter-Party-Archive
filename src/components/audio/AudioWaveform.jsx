@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 
 export default function AudioWaveform({ audioElement, isPlaying }) {
   const canvasRef = useRef(null);

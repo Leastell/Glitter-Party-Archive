@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
     getCurrentUser,
     signInWithGoogle,
@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
             }
         };
 
-        const subscription = onAuthStateChange(async (event, session) => {
+        const subscription = onAuthStateChange(async (event) => {
             if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
                 const currentUser = await getCurrentUser();
                 setUser(currentUser);

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "@/context/AuthProvider";
 import { createSuggestion } from "@/api/suggestions";
 import { Input } from "@/components/ui/input";
 
-export default function SuggestionsSection({ user, isAdmin }) {
+export default function SuggestionsSection() {
     const { user: authUser } = useAuth();
     const [suggestion, setSuggestion] = useState("");
     const [submitting, setSubmitting] = useState(false);
