@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -29,7 +29,7 @@ export default function SubscriptionSuccessPage() {
         </p>
 
         <div className="bg-yellow-50 border-2 border-yellow-400 p-6 mb-8">
-          <h2 className="font-heavy text-lg mb-3">what's next?</h2>
+          <h2 className="font-heavy text-lg mb-3">what&apos;s next?</h2>
           <ul className="font-mono text-xs space-y-2 text-left max-w-md mx-auto">
             <li>★ explore the full break library</li>
             <li>★ watch exclusive video content</li>

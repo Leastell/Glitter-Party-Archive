@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "@/context/AuthProvider";
 import { createVideo } from "@/api/videos";
 import {
@@ -18,7 +18,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Upload, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
 const AVAILABLE_TAGS = [
     "performance",

@@ -1,0 +1,33 @@
+# Deploy Supabase Edge Functions on push to main.
+# Requires GitHub secrets: SUPABASE_ACCESS_TOKEN, SUPABASE_PROJECT_REF
+
+name: Deploy Supabase Edge Functions
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "supabase/functions/**"
+            - ".github/workflows/deploy-supabase-functions.yml"
+    workflow_dispatch: # Allow manual run from Actions tab
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Supabase CLI
+              uses: supabase/setup-cli@v1
+              with:
+                  version: latest
+
+            - name: Deploy Edge Functions
+              env:
+                  SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+              run: |
+                  supabase functions deploy create-checkout-session --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
+                  supabase functions deploy cancel-subscription --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
+                  supabase functions deploy stripe-webhook --project-ref ${{ secrets.SUPABASE_PROJECT_REF }} --no-verify-jwt

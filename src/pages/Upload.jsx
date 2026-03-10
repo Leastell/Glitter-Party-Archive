@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "@/context/AuthProvider";
 import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
 import { createAudioBreak } from "@/api/audio";
@@ -14,7 +14,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Upload, Check, FolderPlus, Music } from "lucide-react";
+import { Check, FolderPlus, Music } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import BulkUploadForm from "../components/audio/BulkUploadForm";

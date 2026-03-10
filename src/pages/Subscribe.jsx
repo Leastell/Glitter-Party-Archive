@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthProvider";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { createStripeCheckoutSession } from "@/api/subscriptions";
+import { getStorageUrl, ASSET_PATHS } from "@/config/assets";
 
 export default function SubscribePage() {
     const navigate = useNavigate();
@@ -76,7 +77,7 @@ export default function SubscribePage() {
             <div className="border-2 border-black bg-white p-8 md:p-12">
                 <div className="text-center mb-8">
                     <img
-                        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d594da8620fa76c929e50b/fec8be8f2_NewProject31.png"
+                        src={getStorageUrl(ASSET_PATHS.musicNotesIcon)}
                         alt="Premium"
                         className="w-20 h-20 mx-auto mb-4 object-contain"
                     />
@@ -90,7 +91,7 @@ export default function SubscribePage() {
 
                 <div className="bg-gray-50 border-2 border-black p-6 mb-8">
                     <h2 className="font-heavy text-lg mb-4">
-                        what's included:
+                        what&apos;s included:
                     </h2>
                     <ul className="space-y-3">
                         <li className="flex items-start gap-3">

@@ -1,5 +1,5 @@
 // Inspired by react-hot-toast library
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useEffect } from "react";
 
 const TOAST_LIMIT = 20;
 const TOAST_REMOVE_DELAY = 1000000;
@@ -85,7 +85,10 @@ export const reducer = (state, action) => {
         ),
       };
     }
-    case actionTypes.REMOVE_TOAST:
+    case actionTypes.REMOVE_TOAST: {
+      if (action.toastId !== undefined) {
+        clearFromRemoveQueue(action.toastId);
+      }
       if (action.toastId === undefined) {
         return {
           ...state,
@@ -96,6 +99,7 @@ export const reducer = (state, action) => {
         ...state,
         toasts: state.toasts.filter((t) => t.id !== action.toastId),
       };
+    }
   }
 };
 

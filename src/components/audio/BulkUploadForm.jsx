@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "@/context/AuthProvider";
 import { createAudioBreak } from "@/api/audio";
 import { uploadAudio, getAudioPublicUrl } from "@/api/storage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Upload, Check, X } from "lucide-react";
+import { Check, X } from "lucide-react";
 
 const DECADES = ["1950s", "1960s", "1970s", "1980s", "1990s", "2000s"];
 

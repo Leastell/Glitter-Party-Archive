@@ -1,15 +1,18 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { useAuth } from "@/context/AuthProvider";
 import { Button } from "@/components/ui/button";
 import { Unlock } from "lucide-react";
+import {
+    getArchiveBannerUrl,
+    getStorageUrl,
+    ASSET_PATHS,
+} from "@/config/assets";
 
 export default function HomePage() {
     const navigate = useNavigate();
     const { user, loading, signInWithGoogle, updateProfile } = useAuth();
-    const imageUrl =
-        "https://uivrdoznitrdkodovsrc.supabase.co/storage/v1/object/public/images/d298d0a6-b92f-4820-9d9a-e677e36ce8c9/archive_banner.png";
+    const imageUrl = getArchiveBannerUrl();
 
     const handleFreeAccess = async () => {
         if (user) {
@@ -65,7 +68,7 @@ export default function HomePage() {
                     <div className="space-y-6">
                         <div className="text-center mb-6">
                             <img
-                                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d594da8620fa76c929e50b/fec8be8f2_NewProject31.png"
+                                src={getStorageUrl(ASSET_PATHS.musicNotesIcon)}
                                 alt="Music Notes"
                                 className="mx-auto my-1 w-16 h-16 object-contain"
                             />
@@ -123,7 +126,8 @@ export default function HomePage() {
 
                         {!user && (
                             <p className="font-mono text-xs text-center text-gray-600 mt-4">
-                                you'll need to log in with google to continue
+                                you&apos;ll need to log in with google to
+                                continue
                             </p>
                         )}
                     </div>

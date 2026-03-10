@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthProvider";
 import { listVideos, deleteVideo } from "@/api/videos";
 import { Button } from "@/components/ui/button";

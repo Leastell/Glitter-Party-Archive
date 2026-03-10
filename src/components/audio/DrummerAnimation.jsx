@@ -1,4 +1,3 @@
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // A simple, transparent, looping GIF of a drummer

@@ -1,11 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/context/AuthProvider";
-import {
-    listAudioBreaks,
-    getAudioBreaksGroupedByFolder,
-    getIndividualAudioBreaks,
-} from "@/api/audio";
-import { updateProfile } from "@/api/auth";
+import { listAudioBreaks } from "@/api/audio";
 import AudioGridItem from "../components/audio/AudioGridItem";
 import FolderItem from "../components/audio/FolderItem";
 import FilterControls from "../components/filters/FilterControls";

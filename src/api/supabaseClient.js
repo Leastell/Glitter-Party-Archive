@@ -3,9 +3,16 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-    console.warn(
-        "Supabase environment variables not set. Please configure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env.local"
+const isPlaceholder =
+    !supabaseUrl ||
+    !supabaseAnonKey ||
+    supabaseUrl.includes("your-project-id") ||
+    supabaseAnonKey.includes("your_") ||
+    supabaseAnonKey.includes("your-");
+
+if (isPlaceholder) {
+    console.error(
+        "Supabase is not configured. In .env.local set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your real project values (from Supabase Dashboard → Settings → API). Restart the dev server after editing .env.local."
     );
 }
 
