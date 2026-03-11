@@ -1,5 +1,7 @@
 # GP Archive
 
+Notion: https://www.notion.so/Glitter-Party-Archive-2e4394be5f7c806d95dbe0d0887f45f4
+
 GP Archive is a React + Vite web app deployed on **Vercel**, backed by **Supabase** (Auth, Postgres, Storage, Edge Functions) and **Stripe** (subscriptions).
 
 ## Tech stack
@@ -88,4 +90,3 @@ npm run build
 - `SETUP-CHECKLIST.md`: getting the app running + Stripe/Supabase setup notes
 - `supabase/functions/DEPLOY-SETUP.md`: CI + manual Edge Function deploy steps
 - `AUDIT.md`: project audit and recommended improvements
-
